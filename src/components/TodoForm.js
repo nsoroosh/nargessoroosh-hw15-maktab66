@@ -34,7 +34,7 @@ export default class TodoForm extends Component {
                     <Form.Group className="mb-3" controlId="formBasictext">
                         <Container fluid>
                             <Row>
-                                <Col><Form.Label style={{color:'',}}><BsClipboardCheck/>وظیفه</Form.Label></Col>
+                                <Col><Form.Label style={{color:'',}}><BsClipboardCheck/>لیست کارها</Form.Label></Col>
                                 <Col><Form.Control 
                                 type="text"
                                  name="newtodo" 
