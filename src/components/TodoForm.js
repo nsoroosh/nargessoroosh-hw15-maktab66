@@ -34,7 +34,7 @@ export default class TodoForm extends Component {
                     <Form.Group className="mb-3" controlId="formBasictext">
                         <Container fluid>
                             <Row>
-                                <Col><Form.Label style={{color:'white'}}><BsClipboardCheck/>Todo tasks</Form.Label></Col>
+                                <Col><Form.Label style={{color:'',}}><BsClipboardCheck/>وظیفه</Form.Label></Col>
                                 <Col><Form.Control 
                                 type="text"
                                  name="newtodo" 
@@ -48,7 +48,7 @@ export default class TodoForm extends Component {
                             </Row>
                         </Container>
                     </Form.Group>
-                    <Button variant="primary" type="submit" style={{backgroundColor:'blueviolet', borderRadius:'12px'}}>
+                    <Button variant="primary" type="submit" style={{backgroundColor:'white', borderRadius:'5px', border:"solid black 1px"}}>
                         add
                     </Button>
                 </Form>

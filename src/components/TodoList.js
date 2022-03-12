@@ -9,111 +9,93 @@ export default class TodoList extends Component {
     constructor() {
         super()
         this.state = {
-            setediting: false,
+
             isediting: false,
             item: ""
         }
-        this.handleEditButton=this.handleEditButton.bind(this)
-        this.handleCancleButton=this.handleCancleButton.bind(this)
-        this.handleChangeInput=this.handleChangeInput.bind(this)
+        this.handleEditButton = this.handleEditButton.bind(this)
+        this.handleCancleButton = this.handleCancleButton.bind(this)
+        this.handleChangeInput = this.handleChangeInput.bind(this)
     }
-    componentDidMount() {
-        this.viewtemplate()
-    }
-    componentDidUpdate(prevstate) {
-        if (prevstate.item !== this.state.item) {
-            if (this.isediting) {
-                this.editingtemplate()
-            } else {
-                this.viewtemplate()
-            }
-        }
-    }
-    edithandle() {
 
-    }
+    // componentDidUpdate(prevstate) {
+    //     if (prevstate.item !== this.state.item) {
+    //         if (this.isediting) {
+    //             this.editingtemplate()
+    //         } else {
+    //             this.viewtemplate()
+    //         }
+    //     }
+    // }
+
 
     handleEditButton() {
-        this.setState({ setediting: true })
+        this.setState({ isediting: true })
     }
     handleCancleButton() {
-        this.setState({ setediting: false })
+        this.setState({ isediting: false })
     }
     handleChangeInput(e) {
         this.setState({ item: e.target.value });
+        console.log(e.target);
 
     }
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addToNewItem(this.state.item);
+        this.props.addToNewItem(this.props.index, this.state.item);
         this.setState({ item: "", isediting: false })
     }
-    viewtemplate() {
-        return (
-            <div>
-                <ListGroup>
-                    <BsFillCheckCircleFill />
-                    <ListGroupItem key={this.props.listItem} style={{ backgroundColor: 'yellow', justifyContent: 'space-around', display: "flex" }} >
-                        {this.props.listItem}
-                    </ListGroupItem>;
-                    <Button style={{ backgroundColor: 'rgb(0, 183, 255)', borderRadius: '12px', marginLeft: "40px" }} variant="danger" onClick={() => {
-                        this.props.delete(this.props.index)
 
-                    }}>delete
-                    </Button>
-                    <Button onClick={this.handleEditButton}>edit</Button>
-                </ListGroup>
-            </div>)
-    }
-    editingtemplate() {
-        return (
+
+
+
+    render() {
+        const editingtemplate = (
             <Form onSubmit={(e) => this.handleSubmit(e)}  >
 
                 <Form.Group className="mb-3" controlId="formBasictext">
                     <Container fluid>
                         <Row>
-                            <Col><Form.Label style={{ color: 'white' }}><BsClipboardCheck />change task</Form.Label></Col>
+
                             <Col><Form.Control
                                 type="text"
                                 name="newtodo"
                                 onChange={(e) => {
                                     this.handleChangeInput(e)
                                 }}
-                                placeholder="next task enter here.." /></Col>
-                            <Col><Form.Text className="text-muted" style={{ color: 'wheat' }}>
-                                enter next task here
-                            </Form.Text></Col>
+                                placeholder="next task enter here.." />
+                            </Col>
+
+
                         </Row>
                     </Container>
                 </Form.Group>
-                <Button variant="primary" type="submit" style={{ backgroundColor: 'blueviolet', borderRadius: '12px' }}>
+                <Button variant="primary" type="submit" style={{ backgroundColor: 'rgb(255, 255, 255)', borderRadius: '5px', border: "solid gray 1px" }}>
                     save
                 </Button>
-                <Button variant="primary" onClick={this.handleCancleButton} style={{ backgroundColor: 'blueviolet', borderRadius: '12px' }}>
+                <Button variant="primary" onClick={this.handleCancleButton} style={{ backgroundColor: 'rgb(255, 255, 255)', borderRadius: '5px', border: "solid gray 1px" }}>
                     cancel
                 </Button>
             </Form>
         )
-    }
+        const viewtemplate = (
+            <ListGroup>
+                <BsFillCheckCircleFill />
 
-    render() {
-
-
-
-        return <ListGroup>
-            <BsFillCheckCircleFill />
-            <ListGroupItem key={this.props.listItem} style={{ backgroundColor: 'yellow', justifyContent: 'space-around', display: "flex" }} >
                 {this.props.listItem}
-            </ListGroupItem>
-            <Button style={{ backgroundColor: 'rgb(0, 183, 255)', borderRadius: '12px', marginLeft: "40px" }} variant="danger" onClick={() => {
-                this.props.delete(this.props.index)
 
-            }}>delete
-            </Button>
-            <Button onClick={this.handleEditButton}>edit</Button>
+                <Button className='delete' style={{ borderRadius: '5px', marginLeft: "40px", border: "solid gray 1px" }} variant="danger" onClick={() => { this.props.delete(this.props.index)}}>
+                    delete
+                </Button>
+                <Button style={{ backgroundColor: 'rgb(255, 255, 255)', borderRadius: '5px', marginLeft: "40px", border: "solid gray 1px" }} onClick={this.handleEditButton}>edit</Button>
+            </ListGroup>
+        )
+
+        return <ListGroup  >
+            <ListGroupItem>{this.state.isediting ? editingtemplate : viewtemplate}</ListGroupItem>
         </ListGroup>;
 
-
+        
 
     }
 }

@@ -35,11 +35,11 @@ export default class Todo extends Component {
         
         
         return (
-            <div style={{}}>
+            <div className='box'>
                 <TodoForm addToNewItem={this.addtolist} />
-                {this.state.listItem}
+                
                   {console.log(this.state.listItem)}
-                {this.state.listItem.map((todo, i) => <TodoList listItem={todo} index={i}delete={this.removeoflist} addToNewItem={this.addtolist}/>)}
+                {this.state.listItem.map((todo, i) => <TodoList listItem={todo} index={i}delete={this.removeoflist} addToNewItem={this.edittask}/>)}
             </div>
         )
     }

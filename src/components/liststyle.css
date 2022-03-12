@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300&family=Open+Sans&display=swap');
 .addbutton {
     background-color: rgb(0, 183, 255);
     border: none;
     border-radius: 12px;
+}
+body{
+    font-family: 'Noto Sans Arabic', sans-serif;
+
+}
+button{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+ListGroup{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.delete{
+    background-color: #C93030;
 }
